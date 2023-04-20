@@ -1,3 +1,12 @@
 "PROLOGUE" = "<p>Drag &amp; drop files on this window or use the \"Upload Files&hellip;\" button to upload new files.</p>";
 "EPILOGUE" = "";
 "FOOTER_FORMAT" = "%@ %@";
+"UPLOAD_FILES" = "Upload Files&hellip;";
+"CREATE_FOLDERS" = "Create Folder&hellip;"
+"REFRESH" = "Refresh";
+"FILE_UPLOADING" = "File Uploads in Progress";
+"CREATE_FOLDER" = "Create Folder";
+"ENTER_FOLDER_NAME" = "Please enter the name of the folder to be created:";
+"CANCEL" = "Cancel";
+"MOVE_ITEM" = "Move Item";
+"ENTER_NEW_LOCATION_ITEM" = "Please enter the new location for this item:";

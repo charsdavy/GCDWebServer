@@ -1,0 +1,12 @@
+"PROLOGUE" = "<p>将文件\"拖放\"到此窗口中或者使用\"上传文件...\"按钮上传新文件。</p>";
+"EPILOGUE" = "";
+"FOOTER_FORMAT" = "%@ %@";
+"UPLOAD_FILES" = "上传文件...";
+"CREATE_FOLDERS" = "创建文件夹...";
+"REFRESH" = "刷新";
+"FILE_UPLOADING" = "文件上传中";
+"CREATE_FOLDER" = "创建文件夹";
+"ENTER_FOLDER_NAME" = "请输入要创建的文件夹的名称:";
+"CANCEL" = "取消";
+"MOVE_ITEM" = "移动文件";
+"ENTER_NEW_LOCATION_ITEM" = "请输入此文件的新位置:";

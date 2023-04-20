@@ -135,13 +135,32 @@ NS_ASSUME_NONNULL_END
 #endif
        footer = [NSString stringWithFormat:[siteBundle localizedStringForKey:@"FOOTER_FORMAT" value:@"" table:nil], name, version];
      }
+      NSString *uploadFiles = [siteBundle localizedStringForKey:@"UPLOAD_FILES" value:@"" table:nil];
+      NSString *createFolders = [siteBundle localizedStringForKey:@"CREATE_FOLDERS" value:@"" table:nil];
+      NSString *refresh = [siteBundle localizedStringForKey:@"REFRESH" value:@"" table:nil];
+      NSString *fileUploading = [siteBundle localizedStringForKey:@"FILE_UPLOADING" value:@"" table:nil];
+      NSString *createFolder = [siteBundle localizedStringForKey:@"CREATE_FOLDER" value:@"" table:nil];
+      NSString *enterFolderName = [siteBundle localizedStringForKey:@"ENTER_FOLDER_NAME" value:@"" table:nil];
+      NSString *cancel = [siteBundle localizedStringForKey:@"CANCEL" value:@"" table:nil];
+      NSString *moveItem = [siteBundle localizedStringForKey:@"MOVE_ITEM" value:@"" table:nil];
+      NSString *enterNewLocationItem = [siteBundle localizedStringForKey:@"ENTER_NEW_LOCATION_ITEM" value:@"" table:nil];
+      
      return [GCDWebServerDataResponse responseWithHTMLTemplate:(NSString*)[siteBundle pathForResource:@"index" ofType:@"html"] variables:@{
          @"device" : device,
          @"title" : title,
          @"header" : header,
          @"prologue" : prologue,
          @"epilogue" : epilogue,
-         @"footer" : footer
+         @"footer" : footer,
+         @"upload_files": uploadFiles,
+         @"create_folders": createFolders,
+         @"refresh": refresh,
+         @"file_uploading": fileUploading,
+         @"create_folder": createFolder,
+         @"enter_folder_name": enterFolderName,
+         @"cancel": cancel,
+         @"move_item": moveItem,
+         @"enter_new_location_item": enterNewLocationItem
        }];
   }];
 
