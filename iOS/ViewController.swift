@@ -41,7 +41,11 @@ class ViewController: UIViewController {
     webServer.allowHiddenItems = true
     
     if webServer.start() {
-      label?.text = "GCDWebServer running locally on port \(webServer.port)"
+      if let serverURL = webServer.serverURL {
+        label?.text = "GCDWebServer running \(serverURL) on port \(webServer.port)"
+      } else {
+        label?.text = "GCDWebServer running locally on port \(webServer.port)"
+      }
     } else {
       label?.text = "GCDWebServer not running!"
     }
