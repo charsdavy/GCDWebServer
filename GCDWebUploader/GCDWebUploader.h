@@ -114,6 +114,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) NSString* title;
 
 /**
+ *  Sets the device name for the uploader web interface.
+ *
+ *  The default value is the device name of user custom.
+ *
+ *  @warning Any reserved HTML characters in the string value for this property
+ *  must have been replaced by character entities e.g. "&" becomes "&amp;".
+ */
+@property(nonatomic, copy) NSString* device;
+
+/**
  *  Sets the header for the uploader web interface.
  *
  *  The default value is the same as the title property.

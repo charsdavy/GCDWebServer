@@ -86,60 +86,64 @@ NS_ASSUME_NONNULL_END
                  requestClass:[GCDWebServerRequest class]
                  processBlock:^GCDWebServerResponse*(GCDWebServerRequest* request) {
 
+      NSString* device = server.device;
 #if TARGET_OS_IPHONE
-                   NSString* device = [[UIDevice currentDevice] name];
+      if (device == nil) {
+        device = [[UIDevice currentDevice] name];
+      }
 #else
-          NSString* device = CFBridgingRelease(SCDynamicStoreCopyComputerName(NULL, NULL));
+      if (device == nil) {
+        device = CFBridgingRelease(SCDynamicStoreCopyComputerName(NULL, NULL));
+      }
 #endif
-                   NSString* title = server.title;
-                   if (title == nil) {
-                     title = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
-                     if (title == nil) {
-                       title = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
-                     }
+     NSString* title = server.title;
+     if (title == nil) {
+       title = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
+       if (title == nil) {
+         title = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
+       }
 #if !TARGET_OS_IPHONE
-                     if (title == nil) {
-                       title = [[NSProcessInfo processInfo] processName];
-                     }
+       if (title == nil) {
+         title = [[NSProcessInfo processInfo] processName];
+       }
 #endif
-                   }
-                   NSString* header = server.header;
-                   if (header == nil) {
-                     header = title;
-                   }
-                   NSString* prologue = server.prologue;
-                   if (prologue == nil) {
-                     prologue = [siteBundle localizedStringForKey:@"PROLOGUE" value:@"" table:nil];
-                   }
-                   NSString* epilogue = server.epilogue;
-                   if (epilogue == nil) {
-                     epilogue = [siteBundle localizedStringForKey:@"EPILOGUE" value:@"" table:nil];
-                   }
-                   NSString* footer = server.footer;
-                   if (footer == nil) {
-                     NSString* name = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
-                     if (name == nil) {
-                       name = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
-                     }
-                     NSString* version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+     }
+     NSString* header = server.header;
+     if (header == nil) {
+       header = title;
+     }
+     NSString* prologue = server.prologue;
+     if (prologue == nil) {
+       prologue = [siteBundle localizedStringForKey:@"PROLOGUE" value:@"" table:nil];
+     }
+     NSString* epilogue = server.epilogue;
+     if (epilogue == nil) {
+       epilogue = [siteBundle localizedStringForKey:@"EPILOGUE" value:@"" table:nil];
+     }
+     NSString* footer = server.footer;
+     if (footer == nil) {
+       NSString* name = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
+       if (name == nil) {
+         name = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
+       }
+       NSString* version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
 #if !TARGET_OS_IPHONE
-                     if (!name && !version) {
-                       name = @"OS X";
-                       version = [[NSProcessInfo processInfo] operatingSystemVersionString];
-                     }
+       if (!name && !version) {
+         name = @"OS X";
+         version = [[NSProcessInfo processInfo] operatingSystemVersionString];
+       }
 #endif
-                     footer = [NSString stringWithFormat:[siteBundle localizedStringForKey:@"FOOTER_FORMAT" value:@"" table:nil], name, version];
-                   }
-                   return [GCDWebServerDataResponse responseWithHTMLTemplate:(NSString*)[siteBundle pathForResource:@"index" ofType:@"html"]
-                                                                   variables:@{
-                                                                     @"device" : device,
-                                                                     @"title" : title,
-                                                                     @"header" : header,
-                                                                     @"prologue" : prologue,
-                                                                     @"epilogue" : epilogue,
-                                                                     @"footer" : footer
-                                                                   }];
-                 }];
+       footer = [NSString stringWithFormat:[siteBundle localizedStringForKey:@"FOOTER_FORMAT" value:@"" table:nil], name, version];
+     }
+     return [GCDWebServerDataResponse responseWithHTMLTemplate:(NSString*)[siteBundle pathForResource:@"index" ofType:@"html"] variables:@{
+         @"device" : device,
+         @"title" : title,
+         @"header" : header,
+         @"prologue" : prologue,
+         @"epilogue" : epilogue,
+         @"footer" : footer
+       }];
+  }];
 
     // File listing
     [self addHandlerForMethod:@"GET"

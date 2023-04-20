@@ -39,6 +39,7 @@ class ViewController: UIViewController {
     webServer = GCDWebUploader(uploadDirectory: documentsPath)
     webServer.delegate = self
     webServer.allowHiddenItems = true
+    webServer.device = "Tomay's iOS Device"
     if webServer.start() {
       label?.text = "GCDWebServer running locally on port \(webServer.port)"
     } else {
