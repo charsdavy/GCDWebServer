@@ -1410,10 +1410,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
-				ENABLE_BITCODE = YES;
+				DEVELOPMENT_TEAM = W246LT7EDJ;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = cn.charsdavy.GCDWebServers;
 				PRODUCT_NAME = GCDWebServer;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1424,10 +1426,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
-				ENABLE_BITCODE = YES;
+				DEVELOPMENT_TEAM = W246LT7EDJ;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = cn.charsdavy.GCDWebServers;
 				PRODUCT_NAME = GCDWebServer;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
