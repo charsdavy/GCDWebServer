@@ -280,7 +280,8 @@ NS_ASSUME_NONNULL_END
       } else if ([type isEqualToString:NSFileTypeDirectory]) {
         [array addObject:@{
           @"path" : [[relativePath stringByAppendingPathComponent:item] stringByAppendingString:@"/"] ?: @"/",
-          @"name" : item
+          @"name" : item,
+          @"directory" : @"1"
         }];
       }
     }
