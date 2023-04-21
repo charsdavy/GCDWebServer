@@ -78,7 +78,7 @@ extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      var cell: UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: "UITableViewCellId")
+        var cell: UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: "UITableViewCellId")
         if cell == nil {
             cell = UITableViewCell(style: .subtitle, reuseIdentifier: "UITableViewCellId")
         }
@@ -91,6 +91,7 @@ extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
                 let date = attr[FileAttributeKey.modificationDate] as! Date
                 cell!.detailTextLabel?.text = String(format: "%@, %@", date.stringIn(format: "HH:mm:ss MM.dd.yyyy"), folderSize(path: file))
             }
+            cell?.accessoryType = .disclosureIndicator
         } else {
             if let attr = attribute {
                 let date = attr[FileAttributeKey.modificationDate] as! Date
@@ -98,6 +99,7 @@ extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
             } else {
                 cell!.detailTextLabel?.text = String(format: "%@", fileSize(filePath: file))
             }
+            cell?.accessoryType = .none
         }
 
         return cell!
@@ -198,7 +200,7 @@ extension FilesViewController {
             dataLength = dataLength / 1024.0
             index = index + 1
         }
-      return "\(dataLength.stripZero) \(units[index])"
+        return "\(dataLength.stripZero) \(units[index])"
     }
 
     func isDirectory(path: String) -> Bool {
@@ -214,14 +216,14 @@ extension FilesViewController {
 }
 
 extension Date {
-  public func stringIn(format: String = "MM_dd_yyyy_HH:mm:ss", timeZone: TimeZone = TimeZone.current, locale: Locale = Locale.current) -> String {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = format
-    dateFormatter.locale = locale // Locale(identifier: "en_US_POSIX")
-    dateFormatter.timeZone = timeZone // TimeZone(secondsFromGMT: 0)
-    
-    return dateFormatter.string(from: self)
-  }
+    public func stringIn(format: String = "MM_dd_yyyy_HH:mm:ss", timeZone: TimeZone = TimeZone.current, locale: Locale = Locale.current) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        dateFormatter.locale = locale // Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = timeZone // TimeZone(secondsFromGMT: 0)
+
+        return dateFormatter.string(from: self)
+    }
 }
 
 extension Double {
