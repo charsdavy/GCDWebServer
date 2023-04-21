@@ -99,6 +99,7 @@
 		CEE28D571AE00AFE00F4023C /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E221129C1690B7BA0048D2B2 /* CoreServices.framework */; };
 		CEE28D591AE00AFE00F4023C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E22112981690B7AA0048D2B2 /* CFNetwork.framework */; };
 		CEE28D6A1AE1ABAA00F4023C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE28D691AE1ABAA00F4023C /* UIKit.framework */; };
+		D54C377129F27DF7004308AD /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54C377029F27DF7004308AD /* FilesViewController.swift */; };
 		E208D149167B76B700500836 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E208D148167B76B700500836 /* CFNetwork.framework */; };
 		E208D1B3167BB17E00500836 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E208D1B2167BB17E00500836 /* CoreServices.framework */; };
 		E221128F1690B6470048D2B2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E221128E1690B6470048D2B2 /* main.m */; };
@@ -291,6 +292,7 @@
 		CEE28D691AE1ABAA00F4023C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		D51F732B29F1192F00388BCF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		D51F732C29F1192F00388BCF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		D54C377029F27DF7004308AD /* FilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
 		E208D148167B76B700500836 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		E208D1B2167BB17E00500836 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		E221128E1690B6470048D2B2 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -620,6 +622,7 @@
 			children = (
 				E2DDD1FC1BE69EE5002CE867 /* AppDelegate.swift */,
 				E2DDD1FF1BE69EE5002CE867 /* ViewController.swift */,
+				D54C377029F27DF7004308AD /* FilesViewController.swift */,
 				E2DDD2011BE69EE5002CE867 /* Main.storyboard */,
 				E2DDD2041BE69EE5002CE867 /* Assets.xcassets */,
 				E2DDD2061BE69EE5002CE867 /* LaunchScreen.storyboard */,
@@ -1064,6 +1067,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2DDD2001BE69EE5002CE867 /* ViewController.swift in Sources */,
+				D54C377129F27DF7004308AD /* FilesViewController.swift in Sources */,
 				E2DDD1FD1BE69EE5002CE867 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

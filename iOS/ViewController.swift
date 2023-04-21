@@ -28,9 +28,16 @@
 import GCDWebServers
 import UIKit
 
+let kWebUploaderNeedRefreshNotificationName = "kWebUploaderNeedRefresh"
+
 class ViewController: UIViewController {
   @IBOutlet var label: UILabel?
   var webServer: GCDWebUploader!
+  
+  deinit {
+    webServer.stop()
+    webServer = nil
+  }
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
@@ -53,30 +60,40 @@ class ViewController: UIViewController {
 
   override func viewDidDisappear(_ animated: Bool) {
     super.viewDidDisappear(animated)
-
-    webServer.stop()
-    webServer = nil
+  }
+    
+   @IBAction func exchangeButtonAction(sender: UIButton) {
+     let viewController = FilesViewController()
+     viewController.title = "Files"
+     self.present(UINavigationController(rootViewController: viewController), animated: true)
+     
+     print("Exchange")
   }
 }
 
 extension ViewController: GCDWebUploaderDelegate {
   func webUploader(_: GCDWebUploader, didUploadFileAtPath path: String) {
+    NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: kWebUploaderNeedRefreshNotificationName), object: nil)
     print("[UPLOAD] \(path)")
   }
 
   func webUploader(_: GCDWebUploader, didDownloadFileAtPath path: String) {
+    NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: kWebUploaderNeedRefreshNotificationName), object: nil)
     print("[DOWNLOAD] \(path)")
   }
 
   func webUploader(_: GCDWebUploader, didMoveItemFromPath fromPath: String, toPath: String) {
+    NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: kWebUploaderNeedRefreshNotificationName), object: nil)
     print("[MOVE] \(fromPath) -> \(toPath)")
   }
 
   func webUploader(_: GCDWebUploader, didCreateDirectoryAtPath path: String) {
+    NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: kWebUploaderNeedRefreshNotificationName), object: nil)
     print("[CREATE] \(path)")
   }
 
   func webUploader(_: GCDWebUploader, didDeleteItemAtPath path: String) {
+    NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: kWebUploaderNeedRefreshNotificationName), object: nil)
     print("[DELETE] \(path)")
   }
 }
