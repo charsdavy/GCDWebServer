@@ -273,13 +273,13 @@ NS_ASSUME_NONNULL_END
       NSString* type = [attributes objectForKey:NSFileType];
       if ([type isEqualToString:NSFileTypeRegular] && [self _checkFileExtension:item]) {
         [array addObject:@{
-          @"path" : [relativePath stringByAppendingPathComponent:item],
+          @"path" : [relativePath stringByAppendingPathComponent:item] ?: @"/",
           @"name" : item,
           @"size" : (NSNumber*)[attributes objectForKey:NSFileSize]
         }];
       } else if ([type isEqualToString:NSFileTypeDirectory]) {
         [array addObject:@{
-          @"path" : [[relativePath stringByAppendingPathComponent:item] stringByAppendingString:@"/"],
+          @"path" : [[relativePath stringByAppendingPathComponent:item] stringByAppendingString:@"/"] ?: @"/",
           @"name" : item
         }];
       }
