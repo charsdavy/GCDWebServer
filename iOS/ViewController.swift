@@ -65,6 +65,9 @@ class ViewController: UIViewController {
    @IBAction func exchangeButtonAction(sender: UIButton) {
      let viewController = FilesViewController()
      viewController.title = "Files"
+     if #available(iOS 13.0, *) {
+       viewController.isModalInPresentation = true
+     }
      self.present(UINavigationController(rootViewController: viewController), animated: true)
      
      print("Exchange")
