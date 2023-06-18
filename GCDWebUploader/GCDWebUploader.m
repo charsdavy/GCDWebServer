@@ -76,16 +76,16 @@ NS_ASSUME_NONNULL_END
     }
     _uploadDirectory = [path copy];
     GCDWebUploader* __unsafe_unretained server = self;
-
-    // Resource files
+    
+      // Resource files
     [self addGETHandlerForBasePath:@"/" directoryPath:(NSString*)[siteBundle resourcePath] indexFilename:nil cacheAge:3600 allowRangeRequests:NO];
-
-    // Web page
+    
+      // Web page
     [self addHandlerForMethod:@"GET"
                          path:@"/"
                  requestClass:[GCDWebServerRequest class]
                  processBlock:^GCDWebServerResponse*(GCDWebServerRequest* request) {
-
+      
       NSString* device = server.device;
 #if TARGET_OS_IPHONE
       if (device == nil) {
@@ -96,121 +96,121 @@ NS_ASSUME_NONNULL_END
         device = CFBridgingRelease(SCDynamicStoreCopyComputerName(NULL, NULL));
       }
 #endif
-     NSString* title = server.title;
-     if (title == nil) {
-       title = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
-       if (title == nil) {
-         title = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
-       }
+      NSString* title = server.title;
+      if (title == nil) {
+        title = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
+        if (title == nil) {
+          title = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
+        }
 #if !TARGET_OS_IPHONE
-       if (title == nil) {
-         title = [[NSProcessInfo processInfo] processName];
-       }
+        if (title == nil) {
+          title = [[NSProcessInfo processInfo] processName];
+        }
 #endif
-     }
-     NSString* header = server.header;
-     if (header == nil) {
-       header = title;
-     }
-     NSString* prologue = server.prologue;
-     if (prologue == nil) {
-       prologue = [siteBundle localizedStringForKey:@"PROLOGUE" value:@"" table:nil];
-     }
-     NSString* epilogue = server.epilogue;
-     if (epilogue == nil) {
-       epilogue = [siteBundle localizedStringForKey:@"EPILOGUE" value:@"" table:nil];
-     }
-     NSString* footer = server.footer;
-     if (footer == nil) {
-       NSString* name = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
-       if (name == nil) {
-         name = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
-       }
-       NSString* version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+      }
+      NSString* header = server.header;
+      if (header == nil) {
+        header = title;
+      }
+      NSString* prologue = server.prologue;
+      if (prologue == nil) {
+        prologue = [siteBundle localizedStringForKey:@"PROLOGUE" value:@"<p>Drag &amp; drop files on this window or use the \"Upload Files&hellip;\" button to upload new files.</p>" table:nil];
+      }
+      NSString* epilogue = server.epilogue;
+      if (epilogue == nil) {
+        epilogue = [siteBundle localizedStringForKey:@"EPILOGUE" value:@" " table:nil];
+      }
+      NSString* footer = server.footer;
+      if (footer == nil) {
+        NSString* name = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
+        if (name == nil) {
+          name = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
+        }
+        NSString* version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
 #if !TARGET_OS_IPHONE
-       if (!name && !version) {
-         name = @"OS X";
-         version = [[NSProcessInfo processInfo] operatingSystemVersionString];
-       }
+        if (!name && !version) {
+          name = @"OS X";
+          version = [[NSProcessInfo processInfo] operatingSystemVersionString];
+        }
 #endif
-       footer = [NSString stringWithFormat:[siteBundle localizedStringForKey:@"FOOTER_FORMAT" value:@"" table:nil], name, version];
-     }
-      NSString *uploadFiles = [siteBundle localizedStringForKey:@"UPLOAD_FILES" value:@"" table:nil];
-      NSString *createFolders = [siteBundle localizedStringForKey:@"CREATE_FOLDERS" value:@"" table:nil];
-      NSString *refresh = [siteBundle localizedStringForKey:@"REFRESH" value:@"" table:nil];
-      NSString *fileUploading = [siteBundle localizedStringForKey:@"FILE_UPLOADING" value:@"" table:nil];
-      NSString *createFolder = [siteBundle localizedStringForKey:@"CREATE_FOLDER" value:@"" table:nil];
-      NSString *enterFolderName = [siteBundle localizedStringForKey:@"ENTER_FOLDER_NAME" value:@"" table:nil];
-      NSString *cancel = [siteBundle localizedStringForKey:@"CANCEL" value:@"" table:nil];
-      NSString *moveItem = [siteBundle localizedStringForKey:@"MOVE_ITEM" value:@"" table:nil];
-      NSString *enterNewLocationItem = [siteBundle localizedStringForKey:@"ENTER_NEW_LOCATION_ITEM" value:@"" table:nil];
+        footer = [NSString stringWithFormat:[siteBundle localizedStringForKey:@"FOOTER_FORMAT" value:@"%@ %@" table:nil], name, version];
+      }
+      NSString *uploadFiles = [siteBundle localizedStringForKey:@"UPLOAD_FILES" value:@"Upload Files&hellip;" table:nil];
+      NSString *createFolders = [siteBundle localizedStringForKey:@"CREATE_FOLDERS" value:@"Create Folder&hellip;" table:nil];
+      NSString *refresh = [siteBundle localizedStringForKey:@"REFRESH" value:@"Refresh" table:nil];
+      NSString *fileUploading = [siteBundle localizedStringForKey:@"FILE_UPLOADING" value:@"File Uploads in Progress" table:nil];
+      NSString *createFolder = [siteBundle localizedStringForKey:@"CREATE_FOLDER" value:@"Create Folder" table:nil];
+      NSString *enterFolderName = [siteBundle localizedStringForKey:@"ENTER_FOLDER_NAME" value:@"Please enter the name of the folder to be created:" table:nil];
+      NSString *cancel = [siteBundle localizedStringForKey:@"CANCEL" value:@"Cancel" table:nil];
+      NSString *moveItem = [siteBundle localizedStringForKey:@"MOVE_ITEM" value:@"Move Item" table:nil];
+      NSString *enterNewLocationItem = [siteBundle localizedStringForKey:@"ENTER_NEW_LOCATION_ITEM" value:@"Please enter the new location for this item:" table:nil];
       
-     return [GCDWebServerDataResponse responseWithHTMLTemplate:(NSString*)[siteBundle pathForResource:@"index" ofType:@"html"] variables:@{
-         @"device" : device,
-         @"title" : title,
-         @"header" : header,
-         @"prologue" : prologue,
-         @"epilogue" : epilogue,
-         @"footer" : footer,
-         @"upload_files": uploadFiles,
-         @"create_folders": createFolders,
-         @"refresh": refresh,
-         @"file_uploading": fileUploading,
-         @"create_folder": createFolder,
-         @"enter_folder_name": enterFolderName,
-         @"cancel": cancel,
-         @"move_item": moveItem,
-         @"enter_new_location_item": enterNewLocationItem
-       }];
-  }];
-
-    // File listing
+      return [GCDWebServerDataResponse responseWithHTMLTemplate:(NSString*)[siteBundle pathForResource:@"index" ofType:@"html"] variables:@{
+        @"device" : device,
+        @"title" : title,
+        @"header" : header,
+        @"prologue" : prologue,
+        @"epilogue" : epilogue,
+        @"footer" : footer,
+        @"upload_files": uploadFiles,
+        @"create_folders": createFolders,
+        @"refresh": refresh,
+        @"file_uploading": fileUploading,
+        @"create_folder": createFolder,
+        @"enter_folder_name": enterFolderName,
+        @"cancel": cancel,
+        @"move_item": moveItem,
+        @"enter_new_location_item": enterNewLocationItem
+      }];
+    }];
+    
+      // File listing
     [self addHandlerForMethod:@"GET"
                          path:@"/list"
                  requestClass:[GCDWebServerRequest class]
                  processBlock:^GCDWebServerResponse*(GCDWebServerRequest* request) {
-                   return [server listDirectory:request];
-                 }];
-
-    // File download
+      return [server listDirectory:request];
+    }];
+    
+      // File download
     [self addHandlerForMethod:@"GET"
                          path:@"/download"
                  requestClass:[GCDWebServerRequest class]
                  processBlock:^GCDWebServerResponse*(GCDWebServerRequest* request) {
-                   return [server downloadFile:request];
-                 }];
-
-    // File upload
+      return [server downloadFile:request];
+    }];
+    
+      // File upload
     [self addHandlerForMethod:@"POST"
                          path:@"/upload"
                  requestClass:[GCDWebServerMultiPartFormRequest class]
                  processBlock:^GCDWebServerResponse*(GCDWebServerRequest* request) {
-                   return [server uploadFile:(GCDWebServerMultiPartFormRequest*)request];
-                 }];
-
-    // File and folder moving
+      return [server uploadFile:(GCDWebServerMultiPartFormRequest*)request];
+    }];
+    
+      // File and folder moving
     [self addHandlerForMethod:@"POST"
                          path:@"/move"
                  requestClass:[GCDWebServerURLEncodedFormRequest class]
                  processBlock:^GCDWebServerResponse*(GCDWebServerRequest* request) {
-                   return [server moveItem:(GCDWebServerURLEncodedFormRequest*)request];
-                 }];
-
-    // File and folder deletion
+      return [server moveItem:(GCDWebServerURLEncodedFormRequest*)request];
+    }];
+    
+      // File and folder deletion
     [self addHandlerForMethod:@"POST"
                          path:@"/delete"
                  requestClass:[GCDWebServerURLEncodedFormRequest class]
                  processBlock:^GCDWebServerResponse*(GCDWebServerRequest* request) {
-                   return [server deleteItem:(GCDWebServerURLEncodedFormRequest*)request];
-                 }];
-
-    // Directory creation
+      return [server deleteItem:(GCDWebServerURLEncodedFormRequest*)request];
+    }];
+    
+      // Directory creation
     [self addHandlerForMethod:@"POST"
                          path:@"/create"
                  requestClass:[GCDWebServerURLEncodedFormRequest class]
                  processBlock:^GCDWebServerResponse*(GCDWebServerRequest* request) {
-                   return [server createDirectory:(GCDWebServerURLEncodedFormRequest*)request];
-                 }];
+      return [server createDirectory:(GCDWebServerURLEncodedFormRequest*)request];
+    }];
   }
   return self;
 }
